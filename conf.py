@@ -50,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = '三新小号 API'
-copyright = '2015, 刘雪彦'
+project = '三新专号服务程序应用程序接口文档'
+copyright = '2015, 广州合梦信息技术有限公司'
 author = '刘雪彦'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -112,7 +112,7 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+# html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -220,13 +220,20 @@ latex_elements = {
 
 # Latex figure (float) alignment
 #'figure_align': 'htbp',
+
+'preamble': r'''
+     \usepackage{xeCJK}
+     \setCJKmainfont{SimSun}
+     \XeTeXlinebreaklocale "zh"
+     \XeTeXlinebreakskip = 0pt plus 1pt
+''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'API.tex', '三新小号 API Documentation',
+  (master_doc, 'API.tex', '三新专号服务程序应用程序接口文档',
    '刘雪彦', 'manual'),
 ]
 
@@ -256,7 +263,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'api', '三新小号 API Documentation',
+    (master_doc, 'api', '三新专号服务程序应用程序接口文档',
      [author], 1)
 ]
 
@@ -270,8 +277,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'API', '三新小号 API Documentation',
-   author, 'API', 'One line description of project.',
+  (master_doc, 'API', '三新专号服务程序应用程序接口文档',
+   author, 'API', '三新专号服务程序应用程序接口文档.',
    'Miscellaneous'),
 ]
 
@@ -293,13 +300,5 @@ texinfo_documents = [
 from sphinx.domains.std import StandardDomain
 
 def setup(app):
-    StandardDomain.initial_data['labels']['routingtable'] = (
-        'http-routingtable',
-        '',
-        'URL 路由表')
-    StandardDomain.initial_data['anonlabels']['routingtable'] = (
-        'http-routingtable',
-        '')
-
-http_index_shortname = 'api'
-http_index_localname = "三新专号 HTTP API"
+    StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', '')
+    StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
