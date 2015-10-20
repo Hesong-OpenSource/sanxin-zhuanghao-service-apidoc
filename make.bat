@@ -47,13 +47,13 @@ if "%1" == "clean" (
 	goto end
 )
 
-REM Check if PYTHON_HOME defiend
+REM Check if PYTHONDIR defiend
 
-if "%PYTHON_HOME%" == "" (
-	set PYTHON_EXE=python
+if "%PYTHONDIR%" == "" (
+	set PYTHONEXE=python
 ) else (
-	set PYTHON_EXE=%PYTHON_HOME%\python
-	set SPHINXBUILD=%PYTHON_EXE% -m sphinx.__init__
+	set PYTHONEXE=%PYTHONDIR%\python
+	set SPHINXBUILD=%PYTHONEXE% -m sphinx.__init__
 )
 
 REM Check if sphinx-build is available and fallback to Python version if any
