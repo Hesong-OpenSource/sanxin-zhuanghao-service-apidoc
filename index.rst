@@ -16,6 +16,7 @@
    原则 <principle>
    安全 <safty>
    验证与授权 <auth>
+   用户管理 <user>
    小号管理 <numbers>
    电话呼叫 <call>
 
