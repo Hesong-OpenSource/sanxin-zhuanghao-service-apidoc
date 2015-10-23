@@ -45,7 +45,7 @@
 获取可选专号列表
 =================
 
-.. http:get:: /api/user/(int: user_id)/vtelnum/available
+.. http:get:: /api/user/(int: user_id)/availablevtelnum
 
   返回该用户可以选取的可用专号的列表
 
