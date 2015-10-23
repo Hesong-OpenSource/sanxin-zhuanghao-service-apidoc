@@ -299,6 +299,9 @@ texinfo_documents = [
 
 from sphinx.domains.std import StandardDomain
 
+http_index_shortname = 'api'
+http_index_localname = "HTTP 路由表"
+
 def setup(app):
     StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', 'HTTP 路由表')
     StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
