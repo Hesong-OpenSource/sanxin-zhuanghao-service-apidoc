@@ -13,7 +13,7 @@
    :maxdepth: 2
 
    自述 <readme>
-   概述 <abstract>
+   原则 <principle>
    安全 <safty>
    验证与授权 <auth>
    小号管理 <numbers>
