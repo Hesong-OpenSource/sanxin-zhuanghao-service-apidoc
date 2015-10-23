@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-三新小号 API 文档
+三新专号服务程序应用程序接口文档
 ============================================
 
 內容目录
@@ -17,10 +17,8 @@
    安全 <safty>
    验证与授权 <auth>
    用户管理 <user>
-   小号管理 <numbers>
+   专号管理 <vtelnum>
    电话呼叫 <call>
-
-
 
 索引
 -----
