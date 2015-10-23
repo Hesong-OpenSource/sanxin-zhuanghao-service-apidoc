@@ -24,6 +24,6 @@
       App => Server [label = "POST /api/user/*/*/makecall"];
       UserPhone -> Server [label = "call"];
       Server -> TargetPhone [label = "forward"];
-      TargetPhone --> Server [label = "answer"];
-      Server --> UserPhone [label = 'answer'];
+      Server <-- TargetPhone [label = "answer"];
+      UserPhone <-- Server [label = 'answer'];
     }
