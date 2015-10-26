@@ -16,10 +16,12 @@
 呼叫过程
 ----------
 
+.. default_fontsize = 18;
+
+
 .. seqdiag::
 
   seqdiag call {
-    default_fontsize = 18;
 
     UserPhone; App; Server; TargetPhone;
 
