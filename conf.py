@@ -306,3 +306,7 @@ http_index_localname = "HTTP 路由表"
 def setup(app):
     StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', 'HTTP 路由表')
     StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
+
+
+# Fontpath for seqdiag (truetype font)
+seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'

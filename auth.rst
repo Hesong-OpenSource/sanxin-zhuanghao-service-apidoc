@@ -6,7 +6,7 @@
 
 .. http:post:: /api/login
 
-  使用手机户登录
+  使用手机号码登录
 
   :<json string telnum: 手机号码
   :<json string password: 三新密码
@@ -16,7 +16,7 @@
   .. note::
     该手机号码必须是在三新系统中登记过的，并且使用三新的密码登录。
 
-    .. warning::
+    .. attention::
       ``token`` 具有时效性，后台服务在一段时间之后，会抛弃原来的令牌，此时，客户端需要调用登录接口，以获取新的令牌。
 
 注销

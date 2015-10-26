@@ -62,7 +62,7 @@
 绑定新专号
 =============
 
-.. http:put:: /api/user/(string: telenum)/vtelnum
+.. http:post:: /api/user/(string: telenum)/vtelnum
 
   手机号码为 `telenum` 的用户为该手机号码绑定一个新的专号
 

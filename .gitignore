@@ -2,3 +2,4 @@
 # SphinxDocumentatoin built dir
 #
 _build/
+_static/
