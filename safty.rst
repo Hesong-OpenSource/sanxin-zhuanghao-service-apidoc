@@ -51,6 +51,10 @@ Token 验证
 要访问的URL路径是 `/api/user/13887654321/path/of/the/api` ；
 那么，最终计算得出的签名将是 `DCE009D2AF85050E249A6511D1C0F0F180EDFA64`
 
+加上验证和签名参数的完整url是::
+
+    http://api/user/13887654321/path/of/the/api?accessid=developer-001&timestamp=1407812629434&signature=DCE009D2AF85050E249A6511D1C0F0F180EDFA64
+
 下面是几种语言的算法实现片段:
 
 Python3
@@ -71,10 +75,6 @@ Python3
   >>> signature = sha1(b''.join(_param_list)).hexdigest().upper()
   >>> print(signature)
   DCE009D2AF85050E249A6511D1C0F0F180EDFA64
-
-此时，url形如::
-
-    http://api/user/13887654321/path/of/the/api?accessid=developer-001&timestamp=1407812629434&signature=DCE009D2AF85050E249A6511D1C0F0F180EDFA64
 
 获取 Unix 时间戳的例子代码
 ----------------------------
