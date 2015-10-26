@@ -1,11 +1,6 @@
 安全
 #########
 
-SSL 验证
-=============
-
-TODO: Client Side Certificate Auth ....
-
 Token 验证
 ==============
 
