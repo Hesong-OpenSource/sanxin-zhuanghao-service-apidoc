@@ -8,11 +8,11 @@
 获取用户信息
 ================
 
-.. http:get:: /api/user/(string: telenum)
+.. http:get:: /api/user/(string: telnum)
 
-  返回手机号码为 `telenum` 的用户的基本信息
+  返回手机号码为 `telnum` 的用户的基本信息
 
-  :>json string telenum: 用户的手机号码
+  :>json string telnum: 用户的手机号码
   :>json string name: 用户的名称
   :>json string createtime: 用户建立的时间（ISO格式）
   :>json string avatar: 用户的头像（BASE64格式）
@@ -22,16 +22,16 @@
 
 .. http:post:: /api/user
 
-  :<json string telenum: 用户的手机号码 (*必填*)
+  :<json string telnum: 用户的手机号码 (*必填*)
   :<json string name: 用户的名称 (*必填*)
   :<json string avatar: 用户的头像（BASE64格式） (*非必填*)
 
 修改用户信息
 ================
 
-.. http:put:: /api/user/(string: telenum)
+.. http:put:: /api/user/(string: telnum)
 
-  修改手机号码为 `telenum` 的用户的基本信息
+  修改手机号码为 `telnum` 的用户的基本信息
 
   :<json string name: 用户的名称
   :<json string avatar: 用户的头像（BASE64格式）
@@ -42,6 +42,6 @@
 删除用户
 ================
 
-.. http:delete:: /api/user/(string: telenum)
+.. http:delete:: /api/user/(string: telnum)
 
-  删除手机号码为 `telenum` 的用户
+  删除手机号码为 `telnum` 的用户

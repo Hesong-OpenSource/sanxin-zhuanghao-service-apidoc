@@ -4,14 +4,13 @@
 登录
 ======
 
-.. http:post:: /api/login
+.. http:post:: /api/user/(string: telnum)/login
 
-  使用手机号码登录
+  手机号码为 `telnum` 的用户登录
 
-  :<json string telnum: 手机号码
-  :<json string password: 三新密码
-  :>json string token: 令牌。
-    用于该用户所有后续请求的验证，见 :http:any:`/api/*`
+  :<json string password: 密码的MD5散列，用十六进制字符串（其中的小写字母转要换成大写字母）表示
+  :>json string token: 令牌
+    用于该用户所有后续请求的验证，见 :http:any:`/api/user/(string: telnum)/*`
 
   .. note::
     该手机号码必须是在三新系统中登记过的，并且使用三新的密码登录。
@@ -22,6 +21,6 @@
 注销
 ======
 
-.. http:post:: /api/logout
+.. http:post:: /api/user/(string: telnum)/logout
 
-  注销
+  手机号码为 `telnum` 的用户登录
