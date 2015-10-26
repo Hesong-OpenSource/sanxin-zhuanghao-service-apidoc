@@ -1,12 +1,14 @@
 专号管理
 ###########
 
+专号管理API用于管理用户所属的专号
+
 获取专号列表
 ===============
 
-.. http:get:: /api/user/(int: user_id)/vtelnum
+.. http:get:: /api/user/(string: telenum)/vtelnum
 
-  返回用户 (`user_id`) 所拥有的专号列表
+  返回手机号码为 `telenum` 的用户所拥有的专号列表
 
   :query int page: 要返回的页码。默认为1（1开始）。
   :query int perPage: 每页长度。如果不指定，服务器采用其默认设置。
@@ -19,7 +21,7 @@
 例子
 --------
 
-此例子中，返回用户 (`user_id=123`) 所拥有的5个专号中的第的3~4个
+此例子中，返回手机号码 (`telenum`) 为 `123` 的用户，所拥有的5个专号中的第3~4个
 
 **Request**
 
@@ -45,9 +47,9 @@
 获取可选专号列表
 =================
 
-.. http:get:: /api/user/(int: user_id)/availablevtelnum
+.. http:get:: /api/user/(string: telenum)/availablevtelnum
 
-  返回该用户可以选取的可用专号的列表
+  返回手机号码为 `telenum` 的用户可以选取的可用专号的列表
 
   :query int page: 要返回的页码。默认为1（1开始）。
   :query int perPage: 每页长度。如果不指定，服务器采用其默认设置。
@@ -60,22 +62,24 @@
 绑定新专号
 =============
 
-.. http:put:: /api/user/(int: user_id)/vtelnum
+.. http:put:: /api/user/(string: telenum)/vtelnum
+
+  手机号码为 `telenum` 的用户为该手机号码绑定一个新的专号
 
   :<json string vtelnum: 要绑定的新专号
 
 取消专号绑定
 =============
 
-.. http:delete:: /api/user/(int: user_id)/vtelnum/(string: vtelnum)
+.. http:delete:: /api/user/(string: telenum)/vtelnum/(string: vtelnum)
 
-  不再继续使用指定的专号
+  手机号码为 `telenum` 的用户取消该手机号码绑定的的一个专号
 
 更换专号
 =============
 
-.. http:post:: /api/user/(int: user_id)/vtelnum/(string: vtelnum)/replace
+.. http:post:: /api/user/(string: telenum)/vtelnum/(string: vtelnum)/replace
 
-  将指定的专号换成另外一个
+    手机号码为 `telenum` 的用户取消该手机号码绑定的专号替换成另外一个
 
   :<json string vtelnum: 要更换的新专号
