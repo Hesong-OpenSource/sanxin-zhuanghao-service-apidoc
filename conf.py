@@ -17,6 +17,11 @@ import sys
 import os
 import shlex
 
+# When RTD builds your project,
+# it sets the READTHEDOCS environment variable to the string True.
+# So within your Sphinx conf.py file, you can vary the behavior based on this
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -309,4 +314,5 @@ def setup(app):
 
 
 # Fontpath for seqdiag (truetype font)
-# seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'
+if not on_rtd:
+    seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'
