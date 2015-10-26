@@ -309,4 +309,4 @@ def setup(app):
 
 
 # Fontpath for seqdiag (truetype font)
-seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'
+# seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'

@@ -18,7 +18,6 @@
 
 .. default_fontsize = 18;
 
-
 .. seqdiag::
 
   seqdiag call {
