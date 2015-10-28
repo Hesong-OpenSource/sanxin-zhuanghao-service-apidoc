@@ -26,8 +26,34 @@
   如果没有调用该接口，或者调用后又取消（ :http:post:`/api/user/(string: telnum)/cancelcall` ），
   服务器不会接受 `telnum` 对 `caller` 的电话呼叫。
 
-呼叫过程顺序图
+例子
+--------
+
+**Request**
+
+.. code-block:: http
+
+  POST /api/user/13612345678/makecall HTTP/1.1
+  Host: example.com
+  Content-Type: application/json
+
+  {"caller": "123": "callee": "456"}
+
+**Response**
+
+.. code-block:: http
+
+  HTTP/1.1 200 OK
+  Content-Type: application/json
+
+  {"callid": "12870498123"}
+
+顺序图
 ---------------
+
+.. sidebar:: 说明
+
+  红色表示WebAPI，蓝色表示电话线路
 
 .. seqdiag::
 
@@ -42,7 +68,6 @@
     Server <-- TargetPhone [label = "answer", color=blue];
     UserPhone <-- Server [label = 'answer', color=blue];
   }
-
 
 取消呼叫
 =============
