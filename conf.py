@@ -37,11 +37,7 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx.ext.mathjax',
-    'sphinxcontrib.httpdomain',
-    'sphinxcontrib.seqdiag',
-]
+extensions = ['sphinx.ext.mathjax']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -305,6 +301,8 @@ texinfo_documents = [
 
 # sphinxcontrib.httpdomain — Documenting RESTful HTTP APIs Additional Configuration
 
+extensions.append('sphinxcontrib.httpdomain')
+
 from sphinx.domains.std import StandardDomain
 
 http_index_shortname = 'api'
@@ -314,7 +312,11 @@ def setup(app):
     StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', 'HTTP 路由表')
     StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
 
+# seqdiag
+extensions.append('sphinxcontrib.seqdiag')
 
-# Fontpath for seqdiag (truetype font)
+seqdiag_html_image_format = 'SVG'
+
 if not on_rtd:
+    # Fontpath for seqdiag (truetype font)
     seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'

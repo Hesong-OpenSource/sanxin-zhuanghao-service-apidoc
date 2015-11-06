@@ -37,7 +37,7 @@
   Host: example.com
   Content-Type: application/json
 
-  {"caller": "123": "callee": "456"}
+  {"caller": "123", "callee": "456"}
 
 **Response**
 
@@ -51,22 +51,34 @@
 顺序图
 ---------------
 
+下面使用顺序图描述一个呼叫场景。
+该场景中：电话号码为 `1001` 的用户，专号是 `2001` ，他使用该专号呼叫目标号码 `3001`
+
 .. sidebar:: 说明
 
-  红色表示WebAPI，蓝色表示电话线路
+  红色表示WebAPI访问，蓝色表示电话线路通信
 
 .. seqdiag::
 
   seqdiag call {
     default_fontsize = 18;
 
-    UserPhone; App; Server; TargetPhone;
+    UserPhone; WebServer; CtiServer; TargetPhone;
 
-    App => Server [label = "POST /api/user/xxx/makecall\n\ncaller='123',callee='456'", color=red];
-    UserPhone -> Server [label = "call '123'", color=blue];
-    Server -> TargetPhone [label = "forward to '456' as '123'", color=blue];
-    Server <-- TargetPhone [label = "answer", color=blue];
-    UserPhone <-- Server [label = 'answer', color=blue];
+    UserPhone => WebServer [
+      label='POST /api/user/1001/makecall\n{"caller":"2001","callee":"3001"}',
+      return='200 OK\n {"callid":"cmf4403oireu"}',
+      color=red];
+    UserPhone ->> CtiServer [label="CALL: 2001", color=blue];
+    CtiServer => WebServer [
+      label='POST /api/cti/callin\n{"from":"1001","to":"3001"}',
+      return='200 OK\n{"action":"bridge","caller":"2001","callee":"3001"}',
+      color=red];
+    CtiServer ->> TargetPhone [label="CALL: from=2001,to=3001", color=blue];
+    CtiServer <<-- TargetPhone [label="RINGING", color=blue];
+    UserPhone <<-- CtiServer [label="RINGING", color=blue];
+    TargetPhone ->> CtiServer  [label="ANSWER", color=blue];
+    CtiServer ->> UserPhone [label='ANSWER', color=blue];
   }
 
 取消呼叫
