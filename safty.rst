@@ -219,7 +219,7 @@ C
 C#
 ^^^^^^^
 
-.. code-block:: csharp
+.. code-block:: c#
 
   int tx = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 

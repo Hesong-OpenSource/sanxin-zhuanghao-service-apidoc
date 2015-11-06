@@ -1,10 +1,15 @@
 #
-# SphinxDocumentatoin built dir
+# Python virtual environment directory
+#
+_env/
+
+#
+# Sphinx Documentation built directory
 #
 _build/
 _static/
 
 #
-# JetBrains PyCharm IDE dir
+# JetBrains PyCharm IDE directory
 #
 .idea/
