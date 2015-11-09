@@ -58,4 +58,4 @@ APP控制手机呼叫 `2001` 。
   HTTP/1.1 200 OK
   Content-Type: application/json
 
-    {"action": "bridge", "caller": "2001", "callee": "3001"}
+  {"action": "bridge", "caller": "2001", "callee": "3001"}

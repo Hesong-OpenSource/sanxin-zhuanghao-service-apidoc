@@ -71,7 +71,7 @@
       label='POST /api/user/1001/makecall\n{"caller":"2001","callee":"3001"}',
       return='200 OK\n {"callid":"27"}',
       color=red];
-    UserPhone ->> CtiServer [label="CALL: 2001", color=blue];
+    UserPhone ->> CtiServer [label="CALL: 3001", color=blue];
     CtiServer => WebServer [
       label='POST /api/cti/callin\n{"from":"1001","to":"3001"}',
       return='200 OK\n{"action":"bridge","caller":"2001","callee":"3001"}',
