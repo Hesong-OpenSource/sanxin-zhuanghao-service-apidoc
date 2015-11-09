@@ -1,5 +1,15 @@
 #
-# SphinxDocumentatoin built dir
+# SphinxDocumentatoin built
 #
 _build/
 _static/
+
+#
+# Python virtualEnv
+#
+_env/
+
+#
+# Idea IDE
+#
+.idea/
