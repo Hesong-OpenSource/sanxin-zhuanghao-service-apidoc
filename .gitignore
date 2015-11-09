@@ -1,13 +1,14 @@
 #
-# Python virtual environment directory
-#
-_env/
-
-#
 # Sphinx Documentation built directory
 #
 _build/
 _static/
+
+#
+# Python virtual environment directory
+#
+_env/
+
 
 #
 # JetBrains PyCharm IDE directory
