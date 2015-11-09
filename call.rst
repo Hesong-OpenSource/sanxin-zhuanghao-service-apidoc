@@ -23,21 +23,23 @@
   如果同一个手机号码连续调用该接口，服务器将以最后一次请求为准。
 
 .. attention::
-  如果没有调用该接口，或者调用后又取消（ :http:post:`/api/user/(string: telnum)/cancelcall` ），
+  如果没有调用该接口，或者调用后又取消(:http:post:`/api/user/(string: telnum)/cancelcall`)，
   服务器不会接受 `telnum` 对 `caller` 的电话呼叫。
 
 例子
 --------
 
+此例中，电话号码为 `1001` 的用户，专号是 `2001` ，他使用该专号呼叫目标号码 `3001`
+
 **Request**
 
 .. code-block:: http
 
-  POST /api/user/13612345678/makecall HTTP/1.1
+  POST /api/user/1001/makecall HTTP/1.1
   Host: example.com
   Content-Type: application/json
 
-  {"caller": "123", "callee": "456"}
+  {"caller": "2001", "callee": "3001"}
 
 **Response**
 
@@ -61,13 +63,13 @@
 .. seqdiag::
 
   seqdiag call {
-    default_fontsize = 18;
+    default_fontsize = 12;
 
     UserPhone; WebServer; CtiServer; TargetPhone;
 
     UserPhone => WebServer [
       label='POST /api/user/1001/makecall\n{"caller":"2001","callee":"3001"}',
-      return='200 OK\n {"callid":"cmf4403oireu"}',
+      return='200 OK\n {"callid":"27"}',
       color=red];
     UserPhone ->> CtiServer [label="CALL: 2001", color=blue];
     CtiServer => WebServer [

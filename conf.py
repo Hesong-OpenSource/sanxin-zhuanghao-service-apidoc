@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # 三新小号 API documentation build configuration file, created by
@@ -79,6 +79,7 @@ language = 'zh'
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
+today_fmt = '%Y-%m-%d %H:%M:%S'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -298,25 +299,19 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
+# -- Extention configuration ------------------------------------------------
 
 # sphinxcontrib.httpdomain — Documenting RESTful HTTP APIs Additional Configuration
-
 extensions.append('sphinxcontrib.httpdomain')
-
 from sphinx.domains.std import StandardDomain
-
 http_index_shortname = 'api'
 http_index_localname = "HTTP 路由表"
-
 def setup(app):
     StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', 'HTTP 路由表')
     StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
 
 # seqdiag
 extensions.append('sphinxcontrib.seqdiag')
-
 seqdiag_html_image_format = 'SVG'
-
 if not on_rtd:
-    # Fontpath for seqdiag (truetype font)
     seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'
