@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # 三新小号 API documentation build configuration file, created by
@@ -37,11 +37,7 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx.ext.mathjax',
-    'sphinxcontrib.httpdomain',
-    'sphinxcontrib.seqdiag',
-]
+extensions = ['sphinx.ext.mathjax']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -83,10 +79,11 @@ language = 'zh'
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
+today_fmt = '%Y-%m-%d %H:%M:%S'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '_env']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -302,19 +299,19 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
+# -- Extention configuration ------------------------------------------------
 
 # sphinxcontrib.httpdomain — Documenting RESTful HTTP APIs Additional Configuration
-
+extensions.append('sphinxcontrib.httpdomain')
 from sphinx.domains.std import StandardDomain
-
 http_index_shortname = 'api'
 http_index_localname = "HTTP 路由表"
-
 def setup(app):
     StandardDomain.initial_data['labels']['routingtable'] = ('http-routingtable', '', 'HTTP 路由表')
     StandardDomain.initial_data['anonlabels']['routingtable'] = ('http-routingtable', '')
 
-
-# Fontpath for seqdiag (truetype font)
+# seqdiag
+extensions.append('sphinxcontrib.seqdiag')
+seqdiag_html_image_format = 'SVG'
 if not on_rtd:
     seqdiag_fontpath = 'asserts/wqy-microhei-lite.ttc'

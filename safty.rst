@@ -1,8 +1,8 @@
 安全
 #########
 
-Token 验证
-==============
+User API 安全
+================
 
 当APP向发起HTTP请求时， **必须** 附带若干URL参数，作为验证依据。
 
@@ -32,11 +32,10 @@ Token 验证
   1. 将 `url path` (裁剪结尾的 `/` ), `telnum`, `password` (大写MD5散列HEX表达式) , `token`, `timestamp`, `accessid`, `accesskey` (大写MD5散列HEX表达式)
      这7个参数按照字符串顺序进行从小到大的排序。
   2. 将排序完毕的各个参数字符串头尾相连，连接成新的字符串。
-  3. 计算上一个步骤中，连接好的字符串的 SHA-1 散列值，散列值用经过大写字母转换(upper case)的十六进制字符串表达式。
+  3. 计算上一个步骤中，连接好的字符串的 SHA-1 散列值字符串，这个字符串是经过大写字母转换(upper case)的十六进制表达式。
 
   .. attention::
     调用登录接口时（:http:post:`/api/user/(string: telnum)/login`）， `token` 参数应使用空字符串
-
 
 签名算法例子代码
 ---------------------
@@ -138,28 +137,26 @@ NodeJs
   var crypto = require('crypto');
 
   (function (){
-    var hashStr = function (input, algorithm) {
-      var hasher = crypto.createHash(algorithm);
+    let hashStr = function (input, algorithm) {
+      let hasher = crypto.createHash(algorithm);
       hasher.update(input);
       return hasher.digest('hex').toUpperCase();
     }
 
-    var accessid = "developer-001";
-    var accesskey = hashStr("xm90uojWSd34E8y3", "md5");
-    var urlpath = "/api/user/13887654321/path/of/the/api";
-    var telnum = "13887654321";
-    var token = "4C609E5D5D234A406D446EA42898EFAD50E4541C";
-    var password = hashStr("This_Is#My&p@ssw0rd", "md5");
-    var timestamp = "1407812629434";
+    let accessid = "developer-001";
+    let accesskey = hashStr("xm90uojWSd34E8y3", "md5");
+    let urlpath = "/api/user/13887654321/path/of/the/api";
+    let telnum = "13887654321";
+    let token = "4C609E5D5D234A406D446EA42898EFAD50E4541C";
+    let password = hashStr("This_Is#My&p@ssw0rd", "md5");
+    let timestamp = "1407812629434";
 
-    var tmpList = [accessid,accesskey, urlpath, telnum, token, password, timestamp];
+    let tmpList = [accessid,accesskey, urlpath, telnum, token, password, timestamp];
     tmpList.sort();
-    var signature = hashStr(tmpList.join(''), 'sha1');
+    let signature = hashStr(tmpList.join(''), 'sha1');
 
     console.log("signature = " + signature);
   })();
-
-
 
 Php
 ^^^^^^^^^^^
@@ -186,17 +183,16 @@ Python
 
 .. code-block:: py
 
-  >>> from hashlib import sha1, md5
-  >>> accessid = b'developer-001'
-  >>> accesskey = bytes(md5(b'xm90uojWSd34E8y3').hexdigest().upper(), 'ascii')
-  >>> url_path = b'/api/user/13887654321/path/of/the/api'
-  >>> telnum = b'13887654321'
-  >>> token = b'4C609E5D5D234A406D446EA42898EFAD50E4541C'
-  >>> password = bytes(md5(b'This_Is#My&p@ssw0rd').hexdigest().upper(), 'ascii')
-  >>> timestamp = b'1407812629434'
-  >>> signature = sha1(b''.join(sorted([accessid, accesskey, url_path, telnum, token, password, timestamp]))).hexdigest().upper()
-  >>> print(signature)
-  DCE009D2AF85050E249A6511D1C0F0F180EDFA64
+  from hashlib import sha1, md5
+  accessid = b'developer-001'
+  accesskey = bytes(md5(b'xm90uojWSd34E8y3').hexdigest().upper(), 'ascii')
+  url_path = b'/api/user/13887654321/path/of/the/api'
+  telnum = b'13887654321'
+  token = b'4C609E5D5D234A406D446EA42898EFAD50E4541C'
+  password = bytes(md5(b'This_Is#My&p@ssw0rd').hexdigest().upper(), 'ascii')
+  timestamp = b'1407812629434'
+  signature = sha1(b''.join(sorted([accessid, accesskey, url_path, telnum, token, password, timestamp]))).hexdigest().upper()
+  print(signature)
 
 获取 Unix 时间戳的例子代码
 ----------------------------
@@ -219,7 +215,7 @@ C
 C#
 ^^^^^^^
 
-.. code-block:: csharp
+.. code-block:: c#
 
   int tx = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
@@ -252,3 +248,21 @@ Python
 
   import time
   ts = int(time.time())
+
+CTI API 安全
+================
+
+.. http:any:: /api/cti/*
+
+  CTI服务器与Web服务器之间的通信与APP的不同，它们之间的API调用是内部的、固定的、无身份的。
+
+  Web服务器 **同时** 使用下面两种方法保障CTI调用的安全：
+
+  1. SSL 客户端证书：
+
+      Web服务器要为CTI服务器颁客户端SSL证书，只有通过SSL验证的HTTP请求才被允许。
+      建议使用 `nginx <http://nginx.org/>`_ 进行SSL证书验证，见 http://nginx.org/en/docs/http/ngx_http_ssl_module.html
+
+  2. `HTTP 基本认证 <https://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81>`_
+
+      Web服务器要针对CTI的HTTP亲求进行HTTP基本认证

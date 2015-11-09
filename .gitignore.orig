@@ -1,10 +1,22 @@
 #
+<<<<<<< HEAD
+# SphinxDocumentatoin built
+=======
 # Sphinx Documentation built directory
+>>>>>>> develop
 #
 _build/
 _static/
 
 #
+<<<<<<< HEAD
+# Python virtualEnv
+#
+_env/
+
+#
+# Idea IDE
+=======
 # Python virtual environment directory
 #
 _env/
@@ -12,5 +24,6 @@ _env/
 
 #
 # JetBrains PyCharm IDE directory
+>>>>>>> develop
 #
 .idea/
